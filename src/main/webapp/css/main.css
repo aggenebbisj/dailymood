@@ -1,0 +1,25 @@
+input[type="submit"] {
+    display:block;
+    clear: both;
+}
+
+.clear {
+    clear: both;
+}
+
+.wrapper {
+    width: 540px;
+    margin: 0px auto;
+    text-align: center;
+}
+
+.mood {
+    float: left;
+    width: 180px;
+    height: 180px;
+    text-align: center;
+}
+
+.happy { background: url('../img/moods.jpg') 0 -20px; }
+.neutral { background: url('../img/moods.jpg') -165px -20px; }
+.sad { background: url('../img/moods.jpg') -330px -20px; }

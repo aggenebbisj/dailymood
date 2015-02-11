@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RHD Mood Board</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/main.css" />
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>How are you feeling today?</h1>
+            <form action="resources/mood" method="post" enctype="application/x-www-form-urlencoded">
+                <div class="mood sad">
+                    <input id="sad" type="radio" name="mood" value="1" />
+                    <label for="sad">Sad</label>
+                </div>
+                <div class="mood neutral">
+                    <input id="neutral" type="radio" name="mood" value="2" checked />
+                    <label for="neutral">Neutral</label>
+                </div>
+                <div class="mood happy">
+                    <input id="happy" type="radio" name="mood" value="3" />
+                    <label for="happy">Happy</label><br/><br/>
+                </div>
+                <input type="submit" name="submit" value="Submit" />
+            </form>
+            <div class="clear"></div>
+        </div>
+    </body>
+</html>
