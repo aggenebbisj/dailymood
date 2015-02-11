@@ -40,13 +40,28 @@ public class MoodsResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("today/stats")
     public MoodStats getStats() {
+        List<Mood> dailyMoods = moodService.findForToday();
+        
+        int sad = sumOfMoods(dailyMoods, 1);
+        int neutral = sumOfMoods(dailyMoods, 2);
+        int happy = sumOfMoods(dailyMoods, 3);
+        
         double average = moodService
                 .findForToday()
                 .stream()
                 .mapToInt(Mood::getValue)
                 .average()
                 .orElse(2);
-        return new MoodStats(average);
+        
+        return new MoodStats(average, happy, neutral, sad);
+    }
+    
+    private int sumOfMoods(List<Mood> moods, int mood) {
+        return moods
+                .stream()
+                .mapToInt(Mood::getValue)
+                .filter(value -> value == mood)
+                .sum();
     }
     
     @POST
@@ -56,7 +71,7 @@ public class MoodsResource {
         
         return Response
                 .status(Response.Status.MOVED_PERMANENTLY)
-                .header("Location", "mood/today/stats")
+                .header("Location", "../stats.html")
                 .build();
     } 
 }

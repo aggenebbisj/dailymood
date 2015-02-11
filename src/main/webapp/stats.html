@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="moodBoardApp">
+    <head>
+        <title>RHD Mood Board Stats</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/angular-chart.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>Stats!</h1>
+            <div id="bar-chart" ng-controller="StatsCtrl">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Daily statistics</div>
+                    <div class="panel-body">
+                        <canvas id="bar" 
+                                class="chart chart-bar" 
+                                data="data" 
+                                labels="labels" 
+                                series="series"
+                                options="options"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/angular.min.js"></script>
+        <script src="js/chart.js"></script>
+        <script src="js/angular-chart.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/statsCtrl.js"></script>
+    </body>
+</html>
