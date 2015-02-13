@@ -1,5 +1,6 @@
 package boundary;
 
+import entity.Tags;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Sets;
 import control.MoodService;
@@ -62,17 +63,10 @@ public class MoodsResource {
         Set<String> neutral = new HashSet<>();
         Set<String> sad = new HashSet<>();
 
-        for (Mood dailyMood : dailyMoods) {
-            if (dailyMood.getValue() == 1) {
-                sad.addAll(dailyMood.getTags());
-            } else if (dailyMood.getValue() == 2) {
-                neutral.addAll(dailyMood.getTags());
-            } else if (dailyMood.getValue() == 3) {
-                happy.addAll(dailyMood.getTags());
-            }
-        }
+        Tags result = new Tags();
+        dailyMoods.stream().forEach(result::add);
 
-        return new Tags(happy, neutral, sad);
+        return result;
     }
 
     private int sumOfMoods(List<Mood> moods, int mood) {

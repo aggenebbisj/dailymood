@@ -34,6 +34,18 @@ public class Mood {
         this.tags = tags;
     }
 
+    public boolean isSad() {
+        return value == 1;
+    }
+    
+    public boolean isNeutral() {
+        return value == 2;
+    }
+    
+    public boolean isHappy() {
+        return value == 3;
+    }
+    
     public int getValue() {
         return value;
     }
