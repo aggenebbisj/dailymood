@@ -27,7 +27,7 @@
                 <div class="clear"></div>
                 <div class="tags-input" ng-controller="TagsInputCtrl">
                     <tags-input ng-model="tags">
-                        <auto-complete source="loadTags($query)"></auto-complete>
+                        <auto-complete source="loadTags($query)" min-length="1"></auto-complete>
                     </tags-input>
                     <input type="hidden" name="tags" value="{{tagValues()}}" />
                 </div>
