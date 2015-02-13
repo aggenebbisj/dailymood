@@ -1,15 +1,11 @@
-
 package entity;
 
-import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Date;
+import java.util.Set;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -24,14 +20,18 @@ public class Mood {
     private Date date;
     private String ip;
 
+    @ElementCollection
+    private Set<String> tags;
+
     public Mood() {
         // Required by JAXB
     }
     
-    public Mood(int value, Date date, String ip) {
+    public Mood(int value, Date date, String ip, Set<String> tags) {
         this.value = value;
         this.date = date;
         this.ip = ip;
+        this.tags = tags;
     }
 
     public int getValue() {
@@ -49,7 +49,15 @@ public class Mood {
     public void setIp(String ip) {
         this.ip = ip;
     }
-    
+
+    public Set<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<String> tags) {
+        this.tags = tags;
+    }
+
     @Override
     public String toString() {
         return "Mood{" + "value=" + value + ", date=" + date + ", ip=" + ip + '}';
