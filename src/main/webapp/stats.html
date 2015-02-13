@@ -1,36 +1,43 @@
 <!DOCTYPE html>
-<html ng-app="moodBoardApp">
+<html ng-app="statsApp">
     <head>
         <title>RHD Mood Board Stats</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/main.css" />
-        <link rel="stylesheet" href="css/angular-chart.css">
+        <link href="css/angular-chart.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jqcloud.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/main.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div class="wrapper">
             <h1>Stats!</h1>
-            <div id="bar-chart" ng-controller="StatsCtrl">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Daily statistics</div>
-                    <div class="panel-body">
-                        <canvas id="bar" 
-                                class="chart chart-bar" 
-                                data="data" 
-                                labels="labels" 
-                                series="series"
-                                options="options"></canvas>
-                    </div>
-                </div>
+            <div id="bar-chart" ng-controller="MoodChartCtrl">
+                <h2>Daily statistics</h2>
+                <canvas id="bar" 
+                        class="chart chart-bar" 
+                        data="data" 
+                        labels="labels" 
+                        series="series"
+                        colours="colours">
+                </canvas>
             </div>
-            <div id="tag-chart">
-                
+            <div ng-controller="MoodTagCloudCtrl">
+                <h2>Happy</h2>
+                <jqcloud words="happy" width="500" height="350" steps="7"></jqcloud>
+                <h2>Neutral</h2>
+                <jqcloud words="neutral" width="500" height="350" steps="7"></jqcloud>
+                <h2>Sad</h2>
+                <jqcloud words="sad" width="500" height="350" steps="7"></jqcloud>
             </div>
         </div>
-        <script src="js/angular.min.js"></script>
-        <script src="js/chart.js"></script>
-        <script src="js/angular-chart.js"></script>
-        <script src="js/app.js"></script>
-        <script src="js/statsCtrl.js"></script>
+        <script src="js/ext/jquery-2.1.3.min.js"></script>
+        <script src="js/ext/angular.min.js"></script>
+        <script src="js/ext/chart.js"></script>
+        <script src="js/ext/angular-chart.js"></script>
+        <script src="js/ext/angular-jqcloud.js"></script>
+        <script src="js/ext/jqcloud.min.js"></script>
+        <script src="js/stats/moodChart.js"></script>
+        <script src="js/stats/moodTagCloud.js"></script>
+        <script src="js/stats/app.js"></script>
     </body>
 </html>

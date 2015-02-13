@@ -1,4 +1,4 @@
-var app = angular.module('moodBoardApp', ['tagsInput']);
+var app = angular.module('statsApp', ['moodChart','moodTagCloud']);
 
 app.run(function ($rootScope) {
     'use strict';
