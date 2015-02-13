@@ -15,7 +15,6 @@ angular.module('tagsInput', ['ngTagsInput']).controller('TagsInputCtrl', functio
     };
 
     $scope.loadTags = function (query) {
-        console.log('query: ' + query);
         return completableTags.filter(function(suggestion) {
             return suggestion.text.toLowerCase().indexOf(query.toLowerCase()) != -1;
         });
