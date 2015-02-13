@@ -36,5 +36,5 @@ public class MoodService {
     private Date toUtilDate(LocalDateTime dateTime) {
         return Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant());
     }
-    
+
 }

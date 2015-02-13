@@ -5,6 +5,7 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.Sets;
 import control.MoodService;
 import entity.Mood;
+import entity.Tag;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Path("mood")
 public class MoodsResource {
@@ -53,6 +55,29 @@ public class MoodsResource {
         return new MoodStats(average, happy, neutral, sad);
     }
 
+    private int sumOfMoods(List<Mood> moods, int mood) {
+        return moods
+                .stream()
+                .mapToInt(Mood::getValue)
+                .filter(value -> value == mood)
+                .sum();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("tags")
+    public Set<Tag> getAllTags() {
+        Set<Tag> result = moodService.findAll()
+                .stream()
+                .map(mood -> mood.getTags())
+                .flatMap(tags -> tags.stream())
+                .filter(tag -> !tag.isEmpty())
+                .map(Tag::new)
+                .collect(Collectors.toSet());
+        
+        return result;
+    }
+    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("today/tags")
@@ -67,14 +92,6 @@ public class MoodsResource {
         dailyMoods.stream().forEach(result::add);
 
         return result;
-    }
-
-    private int sumOfMoods(List<Mood> moods, int mood) {
-        return moods
-                .stream()
-                .mapToInt(Mood::getValue)
-                .filter(value -> value == mood)
-                .sum();
     }
 
     @POST

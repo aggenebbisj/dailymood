@@ -12,7 +12,6 @@
         <div class="wrapper">
             <h1>How are you feeling today?</h1>
             <form action="resources/mood" method="post" enctype="application/x-www-form-urlencoded">
-                <div>
                 <div class="mood sad">
                     <input id="sad" type="radio" name="mood" value="1" />
                     <label for="sad">Sad</label>
@@ -26,12 +25,13 @@
                     <label for="happy">Happy</label><br/><br/>
                 </div>
                 <div class="clear"></div>
-                <div ng-controller="TagsInputCtrl">
-                    <tags-input ng-model="tags"></tags-input>
+                <div class="tags-input" ng-controller="TagsInputCtrl">
+                    <tags-input ng-model="tags">
+                        <auto-complete source="loadTags($query)"></auto-complete>
+                    </tags-input>
                     <input type="hidden" name="tags" value="{{tagValues()}}" />
                 </div>
                 <input type="submit" name="submit" value="Submit" />
-                </div>
             </form>
         </div>
         <script src="js/ext/angular.min.js"></script>

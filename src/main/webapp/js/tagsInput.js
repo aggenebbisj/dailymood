@@ -1,7 +1,26 @@
 angular.module('tagsInput', ['ngTagsInput']).controller('TagsInputCtrl', function ($scope, $http) {
     'use strict';
 
-    // TODO load tags for autocompletion
+    var completableTags = [];
+
+    function initAutoComplete() {
+        $http({
+            method: 'GET',
+            url: '/dailymood/resources/mood/tags'
+        }).success(function (data) {
+            completableTags = data;
+        }).error(function (data) {
+            // ignore
+        });
+    };
+
+    $scope.loadTags = function (query) {
+        console.log('query: ' + query);
+        return completableTags.filter(function(suggestion) {
+            return suggestion.text.toLowerCase().indexOf(query.toLowerCase()) != -1;
+        });
+    };
+
     $scope.tags = [];
 
     $scope.tagValues = function () {
@@ -10,6 +29,7 @@ angular.module('tagsInput', ['ngTagsInput']).controller('TagsInputCtrl', functio
         }).join(", ");
     };
 
+    initAutoComplete();
 });
 
 
