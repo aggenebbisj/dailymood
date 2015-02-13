@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="moodBoardApp">
     <head>
         <title>RHD Mood Board</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/main.css" />
+        <link href="css/ng-tags-input.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/ng-tags-input.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/main.css" rel="stylesheet" />
     </head>
     <body>
         <div class="wrapper">
             <h1>How are you feeling today?</h1>
             <form action="resources/mood" method="post" enctype="application/x-www-form-urlencoded">
+                <div>
                 <div class="mood sad">
                     <input id="sad" type="radio" name="mood" value="1" />
                     <label for="sad">Sad</label>
@@ -22,13 +25,18 @@
                     <input id="happy" type="radio" name="mood" value="3" />
                     <label for="happy">Happy</label><br/><br/>
                 </div>
-                <div class="tagbox">
-                    <input id="tags" name="tags" type="text" value="" />
-                    <label for="tags">Tags</label><br/><br/>
+                <div class="clear"></div>
+                <div ng-controller="TagsCtrl as tagsCtrl">
+                    <tags-input ng-model="tags"></tags-input>
+                    <input type="hidden" name="tags" value="{{tagValues()}}" />
                 </div>
                 <input type="submit" name="submit" value="Submit" />
+                </div>
             </form>
-            <div class="clear"></div>
         </div>
+        <script src="js/angular.min.js"></script>
+        <script src="js/ng-tags-input.min.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/tagsCtrl.js"></script>
     </body>
 </html>

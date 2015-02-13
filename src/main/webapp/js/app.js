@@ -1,8 +1,10 @@
-'use strict';
-angular.module('moodBoardApp', ['chart.js'])
-        .run(function ($rootScope) {
-            $rootScope.serverUrl = 'localhost:8080/dailymood/';
-            $rootScope.resourcePath = '/dailymood/resources/';
-        });
+var app = angular.module('moodBoardApp', []);
+
+app.run(function ($rootScope) {
+    'use strict';
+    console.log('remfoo');
+    $rootScope.resourcePath = '/dailymood/resources/';
+    console.log('app: ' + $rootScope);
+});
 
 

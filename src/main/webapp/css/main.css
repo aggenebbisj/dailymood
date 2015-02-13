@@ -1,3 +1,7 @@
+div.tags-input {
+    margin: 10px 0px;
+}
+
 input[type="submit"] {
     display:block;
     clear: both;
@@ -17,6 +21,7 @@ input[type="submit"] {
     float: left;
     width: 180px;
     height: 180px;
+    margin: 10px 0px;
     text-align: center;
 }
 
